@@ -1,9 +1,13 @@
 #!/usr/bin/python
+
 from flask import Flask
-from flask_restplus import Api, Resource, fields
+from flask_restx import Api, Resource, fields
 import joblib
-from model_deployment import predict
-from werkzeug.utils import cached_property
+from m09_model_deployment import predict_proba
+from flask_cors import CORS
+
+app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes and origins
 
 # Definición aplicación Flask
 app = Flask(__name__)
