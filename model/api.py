@@ -3,6 +3,7 @@ from flask import Flask
 from flask_restplus import Api, Resource, fields
 import joblib
 from model_deployment import predict
+from werkzeug.utils import cached_property
 
 # Definición aplicación Flask
 app = Flask(__name__)
