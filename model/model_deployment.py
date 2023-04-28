@@ -7,10 +7,10 @@ import os
 
 def predict(year, mileage):
     reg = joblib.load(os.path.dirname(__file__) + '/car_price_reg.pkl') 
-    car_ = pd.DataFrame([[year, mileage]], columns=['year','mileage'])
-    car_['por_make'] = 1
-    car_['por_state'] = 1
-    car_['yxm'] = (year * mileage)
+    car_ = pd.DataFrame([[year, mileage]], columns=['Year','Mileage'])
+    car_['Por_Make'] = 1
+    car_['Por_State'] = 1
+    car_['YxM'] = (year * mileage)
     
 #     Make prediction
     p1 = reg.predict(car_)
