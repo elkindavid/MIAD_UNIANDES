@@ -8,9 +8,9 @@ import os
 def predict(year, mileage, state, make, model):
     
     # Carga de datos de archivo .csv
-    dataTraining = pd.read_csv('https://github.com/elkindavid/MIAD_UNIANDES/blob/main/dataTrain_carListings.csv', error_bad_lines=False)
+    dataTraining = pd.read_csv('dataTrain_carListings.csv')
     data = dataTraining
-
+    
     # Codificación de las variables categoricas
     cat = ['State','Make','Model']
     dic = {'State':{},'Make':{},'Model':{}}
