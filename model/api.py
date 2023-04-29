@@ -29,14 +29,35 @@ parser.add_argument(
     'YEAR', 
     type=int, 
     required=True, 
-    help='Año de Fabricación', 
+    help='Year', 
     location='args')
 
 parser.add_argument(
     'MILEAGE', 
     type=int, 
     required=True, 
-    help='Kilometraje', 
+    help='Mileage', 
+    location='args')
+
+parser.add_argument(
+    'STATE', 
+    type=str, 
+    required=True, 
+    help='State', 
+    location='args')
+
+parser.add_argument(
+    'MAKE', 
+    type=str, 
+    required=True, 
+    help='Make', 
+    location='args')
+
+parser.add_argument(
+    'MODEL', 
+    type=str, 
+    required=True, 
+    help='Model', 
     location='args')
 
 resource_fields = api.model('Resource', {
@@ -53,7 +74,7 @@ class CarPriceApi(Resource):
         args = parser.parse_args()
         
         return {
-         "result": predict(args['YEAR'], args['MILEAGE'])
+         "result": predict(args['YEAR'], args['MILEAGE'], args['STATE'], args['MAKE'], args['MODEL'])
         }, 200
     
     
