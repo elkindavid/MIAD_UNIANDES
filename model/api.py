@@ -24,7 +24,7 @@ ns = api.namespace('predict',
 
 # Definición argumentos o parámetros de la API
 parser = api.parser()
-# 	Year	Mileage	State	Make
+
 parser.add_argument(
     'YEAR', 
     type=int, 

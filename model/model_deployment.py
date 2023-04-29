@@ -5,11 +5,27 @@ import joblib
 import sys
 import os
 
-def predict(year, mileage):
+# Carga de datos de archivo .csv
+dataTraining = pd.read_csv('dataTrain_carListings.csv')
+
+# Codificación de las variables categoricas
+cat = ['State','Make','Model']
+dic = {'State':{},'Make':{},'Model':{}}
+
+for i in cat:
+    idx, codex = pd.factorize(data[i])
+    data[i] = idx
+    # Diccionario de referencia
+    dic[i].update({code: i for i, code in enumerate(codex)})
+
+def predict(year, mileage, state, make, model):
     reg = joblib.load(os.path.dirname(__file__) + '/car_price_reg.pkl') 
-    car_ = pd.DataFrame([[year, mileage]], columns=['Year','Mileage'])
-    car_['Por_Make'] = 1
-    car_['Por_State'] = 1
+    
+    state_ = dic['State'][state]
+    make_ = dic['Make'][make]
+    model_ = dic['Model'][model]
+    
+    car_ = pd.DataFrame([[year, mileage, state_, make_, model_]], columns=['Year','Mileage','State','Make','Model'])   
     car_['YxM'] = (year * mileage)
     
 #     Make prediction
@@ -26,8 +42,11 @@ if __name__ == "__main__":
         
         year = sys.argv[1]
         mileage = sys.argv[2]
+        state = sys.argv[3]
+        make = sys.argv[4]
+        model = sys.argv[5]
         
-        p1 = predict(year, mileage)
+        p1 = predict(year, mileage, state, make, model)
         
         print(car)
         print('Car Price: ', p1)
