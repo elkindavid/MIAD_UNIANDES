@@ -5,20 +5,22 @@ import joblib
 import sys
 import os
 
-# Carga de datos de archivo .csv
-dataTraining = pd.read_csv('dataTrain_carListings.csv')
-
-# Codificación de las variables categoricas
-cat = ['State','Make','Model']
-dic = {'State':{},'Make':{},'Model':{}}
-
-for i in cat:
-    idx, codex = pd.factorize(data[i])
-    data[i] = idx
-    # Diccionario de referencia
-    dic[i].update({code: i for i, code in enumerate(codex)})
-
 def predict(year, mileage, state, make, model):
+    
+    # Carga de datos de archivo .csv
+    dataTraining = pd.read_csv('https://github.com/elkindavid/MIAD_UNIANDES/blob/main/dataTrain_carListings.csv')
+    data = dataTraining
+
+    # Codificación de las variables categoricas
+    cat = ['State','Make','Model']
+    dic = {'State':{},'Make':{},'Model':{}}
+
+    for i in cat:
+        idx, codex = pd.factorize(data[i])
+        data[i] = idx
+        # Diccionario de referencia
+        dic[i].update({code: i for i, code in enumerate(codex)})
+    
     reg = joblib.load(os.path.dirname(__file__) + '/car_price_reg.pkl') 
     
     state_ = dic['State'][state]
