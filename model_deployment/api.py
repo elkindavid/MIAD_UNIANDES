@@ -3,7 +3,7 @@
 from flask import Flask
 from flask_restx import Api, Resource, fields
 import joblib
-from model_deployment import predict
+from model_dep import predict
 from flask_cors import CORS
 
 app = Flask(__name__)
