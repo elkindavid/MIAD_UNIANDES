@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from flask import Flask
+from flask import Flask, render_template
 from flask_restx import Api, Resource, fields
 import joblib
 from model_deployment import predict
@@ -19,8 +19,8 @@ api = Api(
     title='Movie genre classification API',
     description='Movie genre classification API')
 
-ns = api.namespace('predict', 
-     description='Movie genre classification')
+ns = api.namespace('Predict', 
+     description='Top 3 Most Likely Movie Genres')
 
 # Definición argumentos o parámetros de la API
 parser = api.parser()
@@ -33,7 +33,7 @@ parser.add_argument(
     location='args')
 
 resource_fields = api.model('Resource', {
-    'result': fields.String,
+    'result': fields.String
 })
 
 # Definición de la clase para disponibilización

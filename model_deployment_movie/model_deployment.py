@@ -41,9 +41,9 @@ def predict(plot):
         q = remove_stopwords(q)
         q_vec = tfidf_vectorizer.transform([q])
         q_pred = clf.predict_proba(q_vec)
-        res = pd.DataFrame(q_pred, columns=categories)
-        final_df = res.T.sort_values(by=0, ascending=False).head(5)
-        return final_df.index
+        res = pd.DataFrame(q_pred, columns=categories, )
+        final_df = res.T.sort_values(by=0, ascending=False).head(3)
+        return final_df.index.tolist()
 
     return top5(plot)
 
