@@ -35,8 +35,8 @@ def predict(plot):
         'Fantasy', 'Film-Noir', 'History', 'Horror', 'Music', 'Musical', 'Mystery', 'News', 'Romance',
         'Sci-Fi', 'Short', 'Sport', 'Thriller', 'War', 'Western']
 
-    # Top 5 predicted categories 
-    def top5(q):
+    # Top 3 predicted categories 
+    def top3(q):
         q = clean_text(q)
         q = remove_stopwords(q)
         q_vec = tfidf_vectorizer.transform([q])
