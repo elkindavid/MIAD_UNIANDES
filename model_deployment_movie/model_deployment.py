@@ -45,7 +45,7 @@ def predict(plot):
         final_df = res.T.sort_values(by=0, ascending=False).head(3)
         return final_df.index.tolist()
 
-    return top5(plot)
+    return top3(plot)
 
 if __name__ == "__main__":
     
