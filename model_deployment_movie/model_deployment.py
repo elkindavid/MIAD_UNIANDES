@@ -6,6 +6,7 @@ import sys
 import os
 import re
 from nltk.corpus import stopwords
+import numpy as np
 
 def predict(plot):
     
@@ -40,10 +41,10 @@ def predict(plot):
         q = clean_text(q)
         q = remove_stopwords(q)
         q_vec = tfidf_vectorizer.transform([q])
-        q_pred = clf.predict_proba(q_vec)
-        res = pd.DataFrame(q_pred, columns=categories, )
-        final_df = res.T.sort_values(by=0, ascending=False).head(3)
-        return final_df.index.tolist()
+        q_pred = np.round(clf.predict_proba(q_vec),3)
+        res = pd.DataFrame(q_pred, columns=categories )
+        df = res.T.sort_values(by=0, ascending=False).head(3)
+        return df[0].to_dict()
 
     return top3(plot)
 
